@@ -10,15 +10,17 @@
 public class Player
 {
     
-    float health;
-    Objects[] inventory;
-    
+    public float health;
+    private Item[] inventory;
+    public int location;
     
     public Player() {
         health = 25.0f;
-        inventory = new Objects[10];
+        inventory = new Item[10];
+        location = 0;
     }
     
-    
-    
+    public String toString() {
+        return "You are in room " + location + ".\nYou have " + health + " health.";
+    }
 }

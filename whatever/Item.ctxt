@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Item()
+comment1.params=canTake\ canOpen\ canEat\ canWear\ canUse\ look\ name
+comment1.target=Item(boolean,\ boolean,\ boolean,\ boolean,\ boolean,\ java.lang.String,\ java.lang.String)
+comment10.params=
+comment10.target=java.lang.String\ toString()
+comment2.params=look\ name
+comment2.target=Item(java.lang.String,\ java.lang.String)
+comment3.params=name
+comment3.target=Item(java.lang.String)
+comment4.params=thing
+comment4.target=boolean\ can(java.lang.String)
+comment5.params=
+comment5.target=java.lang.String\ getLook()
+comment6.params=player
+comment6.target=void\ use(Player)
+comment7.params=newLook
+comment7.target=void\ setLook(java.lang.String)
+comment8.params=
+comment8.target=java.lang.String\ getName()
+comment9.params=newName
+comment9.target=void\ setName(java.lang.String)
+numComments=11

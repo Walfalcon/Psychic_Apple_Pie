@@ -7,9 +7,19 @@
  * @version 3/24/2017
  */
 
-public class mainThing
+public class MainThing
 {
+
     public static void main(String[] args) {
+        Player player = new Player();
+        Map dungeon = new Map();
+        System.out.println(player);
+        System.out.println(dungeon);
+        System.out.println(dungeon.map[0]);
+        System.out.println(dungeon.map[0].stuff.get(0));
+        dungeon.map[0].getItem("boring wood door").use(player);
+        System.out.println(player);
         
     }
+
 }

@@ -7,7 +7,7 @@
  */
 import java.util.Scanner;
 
-public class input
+public class Input
 {
     static Scanner key = new Scanner(System.in);
     private static String[] look = new String[] {"look", "search", "examine", "check", "observe", "read"};
@@ -19,37 +19,73 @@ public class input
     private static String[] place = new String[] {"place", "set", "put", "remove", "drop"};
     private static String[] go = new String[] {"go", "move", "walk", "enter", "run", "saunter", "skip", "roll", "leave"};
     
+    public static void input(Map map, Player player) {
+        String rawIn = key.nextLine();
+        String action = action(rawIn);
+        int object = object(rawIn, map, player);
+        if(object != -1) {
+            
+        } else {
+                    System.out.println("There doesn't appear to be an object with that name.\n" +
+                    "This is an extremely pedantic game, did you type everything exactly right?");
+        }
+        
+        input(map, player);
+    }
     
+   //gets the action to be performed from the string.
     public static String action(String rawIn) {
         
-        if(check(look, rawIn)) {
+        if(checkArr(look, rawIn)) {
             return "look";
-        } else if(check(eat, rawIn)) {
+        } else if(checkArr(eat, rawIn)) {
             return "eat";
-        } else if(check(open, rawIn)) {
+        } else if(checkArr(open, rawIn)) {
             return "open";
-        } else if(check(close, rawIn)) {
+        } else if(checkArr(close, rawIn)) {
             return "close";
-        } else if(check(wear, rawIn)) {
+        } else if(checkArr(wear, rawIn)) {
             return "wear";
-        } else if(check(use, rawIn)) {
+        } else if(checkArr(use, rawIn)) {
             return "use";
-        } else if(check(place, rawIn)) {
+        } else if(checkArr(place, rawIn)) {
             return "place";
-        } else if(check(go, rawIn)) {
+        } else if(checkArr(go, rawIn)) {
             return "go";
         } else {
-            return null;
+            return "";
         }
     }
     
-    public static boolean check(String[] toCheck, String input) {
+    //gets the object to perform an action on
+    public static int object(String rawIn, Map map, Player player) {
+        String objName;
+        for(int i = 0; i < map.map[player.location].stuff.size(); i++) {
+            objName = map.map[player.location].stuff.get(i).name;
+            if(checkStr(objName, rawIn)) {
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+    
+    //checks whether an input is in an array, for use when converting raw input into readable syntax
+    public static boolean checkArr(String[] toCheck, String input) {
         for(String term: toCheck) {
             if(input.indexOf(term) != -1) {
                 return true;
             }
         }
         
+        return false;
+    }
+    
+    //checks if an item is in a string, for use when finding the items referred to in the input
+    public static boolean checkStr(String toCheck, String input) {
+        if(input.indexOf(toCheck) != -1) {
+            return true;
+        }
         return false;
     }
 }
