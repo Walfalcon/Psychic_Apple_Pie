@@ -11,24 +11,18 @@ public class Door extends Item {
     public int room;
     
     public Door(int room, boolean isLocked, String look, String name) {
-        canOpen = true;
         this.isLocked = isLocked;
         this.room = room;
-        this.look = look;
-        this.name = name;
-        canTake = false;
-        canEat = false;
-        canWear = false;
-        canUse = true;
-        canGo = true;
+        this.setLook(look);
+        this.setName(name);
     }
     
-    public void use(Player player) {
-        player.location = room;
-        System.out.println("You go through the door");
+    public void Go(Player player) {
+            player.location = room;
+            System.out.println("You go through the door");
     }
-    
+   
     public String toString() {
-        return look;
+        return getLook();
     }
 }

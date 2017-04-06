@@ -33,7 +33,7 @@ public class Room
     public Item getItem(String get) {
         String objName;
         for(int i = 0; i < stuff.size(); i++) {
-            objName = stuff.get(i).name;
+            objName = stuff.get(i).getName();
             if(objName.equals(get)) {
                 return (Item)stuff.get(i);
             }
@@ -41,6 +41,10 @@ public class Room
         System.out.println("There doesn't appear to be an object with that name.\n" +
                            "This is an extremely pedantic game, did you type everything exactly right?");
         return null;
+    }
+    
+    public Item getItem(int get) {
+        return stuff.get(get);
     }
     
     public String toString() {

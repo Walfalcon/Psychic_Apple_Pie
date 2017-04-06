@@ -17,20 +17,23 @@ public class Input
     private static String[] wear = new String[] {"wear", "put on", "enrobe"};
     private static String[] use = new String[] {"use", "utilize", "operate", "move", "activate", "push", "pull", "press", "twist"};
     private static String[] place = new String[] {"place", "set", "put", "remove", "drop"};
-    private static String[] go = new String[] {"go", "move", "walk", "enter", "run", "saunter", "skip", "roll", "leave"};
+    private static String[] go = new String[] {"go ", "move", "walk", "enter", "run", "saunter", "skip", "roll", "leave"};
+    private static String[] take = new String[] {"take", "get", "grab", "clasp", "obtain", "pick up"};
     
     public static void input(Map map, Player player) {
         String rawIn = key.nextLine();
-        String action = action(rawIn);
-        int object = object(rawIn, map, player);
-        if(object != -1) {
-            
-        } else {
-                    System.out.println("There doesn't appear to be an object with that name.\n" +
-                    "This is an extremely pedantic game, did you type everything exactly right?");
-        }
         
-        input(map, player);
+        String action = action(rawIn);
+        Item object = object(rawIn, map, player);
+        
+        if(object != null) {
+            object.use(player, action);
+        } else if (action.equals("look")){
+            System.out.println(map.map[player.location]);
+        } else {
+            System.out.println("There doesn't appear to be an object with that name.\n" +
+            "This is an extremely pedantic game, did you type everything exactly right?");
+        }
     }
     
    //gets the action to be performed from the string.
@@ -52,22 +55,24 @@ public class Input
             return "place";
         } else if(checkArr(go, rawIn)) {
             return "go";
+        } else if(checkArr(take, rawIn)) {
+            return "take";
         } else {
             return "";
         }
     }
     
     //gets the object to perform an action on
-    public static int object(String rawIn, Map map, Player player) {
+    public static Item object(String rawIn, Map map, Player player) {
         String objName;
         for(int i = 0; i < map.map[player.location].stuff.size(); i++) {
-            objName = map.map[player.location].stuff.get(i).name;
+            objName = map.map[player.location].getItem(i).getName();
             if(checkStr(objName, rawIn)) {
-                return i;
+                return map.map[player.location].getItem(i);
             }
         }
         
-        return -1;
+        return null;
     }
     
     //checks whether an input is in an array, for use when converting raw input into readable syntax

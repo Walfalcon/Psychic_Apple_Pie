@@ -17,9 +17,13 @@ public class MainThing
         System.out.println(dungeon);
         System.out.println(dungeon.map[0]);
         System.out.println(dungeon.map[0].stuff.get(0));
-        dungeon.map[0].getItem("boring wood door").use(player);
-        System.out.println(player);
+        while(player.location != 8) {
+            Input.input(dungeon, player);
+        }
         
     }
-
+    
+    public static int RandomNum(int num1, int num2) {
+        return (int)(Math.random() * (num2 - num1)) + num1;
+    }
 }
