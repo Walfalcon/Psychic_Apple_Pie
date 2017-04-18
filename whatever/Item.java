@@ -5,14 +5,17 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Item {
-    private String look;    //A string that holds a description of the object.
-    private String name;    //The name of the object.
+public class Item
+{
+    protected String look;    //A string that holds a description of the object.
+    protected String name;    //The name of the object.
+    protected Room room;
     
     /**
      * If for some reason you want to make a object with no name or description.
      */
-    public Item() {
+    public Item()
+    {
         look = "";
         name = "";
     }
@@ -20,49 +23,75 @@ public class Item {
     /**
      * This is the normal constructor. Why would you use the other one.
      */
-    public Item(String look, String name) {
+    public Item(String look, String name)
+    {
         this.look = look;
         this.name = name;
     }
     
-    public Item(String name) {
+    public Item(String name)
+    {
         this("It's a " + name, name);
     }
     
+    public void setRoom(Room room)
+    {
+        this.room = room;
+    }
     
-    public void use(Player player, String action) {
+    public Room getRoom()
+    {
+        return room;
+    }
+    
+    public void use(Player player, String action)
+    {
         switch (action) {
-            case "look": this.Look(player);
+            case "look": this.look(player);
                 break;
-            case "eat": this.Eat(player);
+            case "eat": this.eat(player);
                 break;
-            case "open": this.Open(player);
+            case "open": this.open(player);
                 break;
-            case "close": this.Close(player);
+            case "close": this.close(player);
                 break;
-            case "wear": this.Wear(player);
+            case "wear": this.wear(player);
                 break;
-            case "use": this.Use(player);
+            case "use": this.use(player);
                 break;
-            case "place": this.Place(player);
+            case "place": this.place(player);
                 break;
-            case "go": this.Go(player);
+            case "go": this.go(player);
                 break;
-            case "take": this.Take(player);
+            case "take": this.take(player);
                 break;
             default:
-            System.out.println("Trying to " + action + " " + name + " doesn't do anything.");
+                System.out.println("Trying to " + action + " " + name + " doesn't do anything.");
+        }
+    }
+    
+    public void use(Player player, String action, Item otherItem)
+    {   
+        switch (action) {
+            case "use": this.use(player, otherItem);
+                break;
+            case "place": this.place(player, otherItem);
+                break;
+            default:
+                System.out.println("It doesn't work.");
         }
     }
     
     /**
      * These are the default interactions for all objects. If a new item doesn't have  it's own interactions, it'll use these by default.
      */
-    public void Look(Player player) {
+    public void look(Player player)
+    {
         System.out.println(this.getLook());
     }
     
-    public void Eat(Player player) {
+    public void eat(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -75,12 +104,13 @@ public class Item {
             System.out.println("You don't really feel like eating the " + name + ".\nMaybe if you hadn't had that cake earlier you'd have enough room for some " + name + " now." + 
                                "\nI told you you'd ruin your appetite but you never listen do you. You used to be so charming. What happened to the dashing young man I married?" +
                                "\nHonestly. If you're just going to be like this all the time I may as well just move out.\nOh don't give me that look, we both know that this has"+
-                               " been coming for a long time. Oh? Fine. Fine! I'm leaving right now. I already packed, anyways.\nGoodbye, George.");
+                               " been coming for a long time. Oh? Fine. Fine! I'm leaving right now. I already packed, anyways.\ngoodbye, George.");
         }
         
     }
     
-    public void Open(Player player) {
+    public void open(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -96,7 +126,8 @@ public class Item {
         }
     }
     
-    public void Close(Player player) {
+    public void close(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -110,7 +141,8 @@ public class Item {
         }
     }
     
-    public void Wear(Player player) {
+    public void wear(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -118,21 +150,22 @@ public class Item {
         } else if (rand < 50) {
             System.out.println("You would, but it clashes with your purse.");
         } else if (rand < 75) {
-            System.out.println("It's too tight, it won't fit.\n\n( ͡° ͜ʖ ͡°)");
+            System.out.println("It's too tight, it won't fit.\n...\n...\n\n( ͡° ͜ʖ ͡°)");
         } else {
             System.out.println("It's high fashion!");
         }
     }
     
-    public void Use(Player player) {
+    public void use(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
-            System.out.println("USE is too vague for this item. Try EATing or WEARing it.");
+            System.out.println("use is too vague for this item. Try eating or wearing it.");
         } else if (rand < 50) {
-            System.out.println("Are you just going to USE it and throw it away like you USEd me?");
+            System.out.println("Are you just going to use it and throw it away like you used me?");
         } else if (rand < 75) {
-            System.out.println("LucasArts would insult you right about now for trying to USE something you can't USE, but I understand. Often times a developer will miss\n" +
+            System.out.println("LucasArts would insult you right about now for trying to use something you can't use, but I understand. Often times a developer will miss\n" +
                                "an obvious interaction, so when the player tries to perform that interaction, they're surprised when the game calls them stupid. I'm not\n" +
                                "going to insult you for doing something that is, in all likelyhood, something I should have coded into the game. No, I'm going to insult\n" +
                                "you because I feel like it, and it's fun. I saw your mother on the corner last night, it's amazing she gets work with a face like that.\n" +
@@ -144,7 +177,8 @@ public class Item {
         }
     }
     
-    public void Place(Player player) {
+    public void place(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -154,11 +188,13 @@ public class Item {
         } else if (rand < 75) {
             System.out.println("You can't. You're not holding it.");
         } else {
-            System.out.println("You place it right next to itself. Causality collapses. The universe folds in on itself. Somewhere, a dog meows. Actually you don't, but would't it be cool if you did?");
+            System.out.println("You place it right next to itself. Causality collapses. The universe folds in on itself. Somewhere, a dog meows. Actually you don't, but would't it be cool if you did?\n"
+                               + "No, that's stupid.");
         }
     }
     
-    public void Go(Player player) {
+    public void go(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -169,13 +205,14 @@ public class Item {
         } else if (rand < 50) {
             System.out.println("Don't go, it's suicide!");
         } else if (rand < 75) {
-            System.out.println("Poekman go to the polls");
+            System.out.println("Poekman goto te pols");
         } else {
-            System.out.println("Go to hell.");
+            System.out.println("go to hell.");
         }
     }
     
-    public void Take(Player player) {
+    public void take(Player player)
+    {
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
@@ -190,28 +227,57 @@ public class Item {
     }
     
     /**
-     * Methods for changing the name and description of the item.
+     * "Use with" methods
      */
-    public void setLook(String newLook) {
-        look = newLook;
+    
+    public void use(Player player, Item otherItem) 
+    {
+        int rand = MainThing.RandomNum(0, 100);
+        
+        if (rand < 25) {
+            System.out.println("Smashing rocks together won't help. It probably will, actually. It'll just take a while");
+        } else if (rand < 50) {
+            System.out.println("You can't. Don't ask me to explain, you just can't.");
+        } else if (rand < 75) {
+            System.out.println("I would say something clever about what you get when you combine a " + name + " and a " + otherItem.getName() + ", but like, that's hard, and I don' wanna.");
+        } else {
+            System.out.println("Using a " + name + " with " + otherItem + " might make a vegetarian angry.");
+        }
     }
     
-    public void setName(String newName) {
+    public void place(Player player, Item otherItem)
+    {
+        place(player);
+    }
+    
+    /**
+     * Methods for changing the name and description of the item.
+     */
+    public void setLook(String newlook)
+    {
+        look = newlook;
+    }
+    
+    public void setName(String newName)
+    {
         name = newName;
     }
     
     /**
-     * Use this to get the name and description of the item.
+     * use this to get the name and description of the item.
      */
-    public String getLook() {
+    public String getLook()
+    {
         return look;
     }
     
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
     
-    public String toString() {
+    public String toString()
+    {
         return name;
     }
 }

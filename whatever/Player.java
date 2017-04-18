@@ -9,13 +9,14 @@
 
 public class Player
 {
-    
+    public float maxHealth;
     public float health;
     private Item[] inventory;
     public int location;
     
     public Player() {
-        health = 25.0f;
+        maxHealth = 25f;
+        health = 10f;
         inventory = new Item[10];
         location = 0;
     }

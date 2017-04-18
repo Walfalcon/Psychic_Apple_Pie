@@ -1,33 +1,40 @@
-
 /**
  * It's the input. That's what it is.
- * 
- * @author (your name) 
- * @version (a version number or a date)
  */
 import java.util.Scanner;
 
 public class Input
 {
     static Scanner key = new Scanner(System.in);
-    private static String[] look = new String[] {"look", "search", "examine", "check", "observe", "read"};
-    private static String[] eat = new String[] {"eat", "consume", "imbibe", "drink", "chug", "gobble", "devour"};
-    private static String[] open = new String[] {"open"};
-    private static String[] close = new String[] {"close"};
-    private static String[] wear = new String[] {"wear", "put on", "enrobe"};
-    private static String[] use = new String[] {"use", "utilize", "operate", "move", "activate", "push", "pull", "press", "twist"};
-    private static String[] place = new String[] {"place", "set", "put", "remove", "drop"};
-    private static String[] go = new String[] {"go ", "move", "walk", "enter", "run", "saunter", "skip", "roll", "leave"};
-    private static String[] take = new String[] {"take", "get", "grab", "clasp", "obtain", "pick up"};
+    private static String[][] actions = new String[][]{
+        {"look", "search", "examine", "check", "observe", "read"},
+        {"eat", "consume", "imbibe", "drink", "chug", "gobble", "devour"},
+        {"open"},
+        {"close"},
+        {"wear", "put on", "enrobe"},
+        {"use", "utilize", "operate", "move", "activate", "push", "pull", "press", "twist"},
+        {"place", "set", "put", "remove", "drop"},
+        {"go ", "move", "walk", "enter", "run", "saunter", "skip", "roll", "leave"},
+        {"take", "get", "grab", "clasp", "obtain", "pick up"},
+        {"unlock"}
+    };
     
     public static void input(Map map, Player player) {
+        System.out.println("\n");
         String rawIn = key.nextLine();
+        System.out.print("\n");
         
         String action = action(rawIn);
-        Item object = object(rawIn, map, player);
+        Item object1 = object(rawIn, map, player);
         
-        if(object != null) {
-            object.use(player, action);
+        if(object1 != null) {
+            rawIn.replaceFirst(rawIn, object1.getName());
+            Item object2 = object(rawIn, map, player);
+            if(object2 == null) {
+                object1.use(player, action);
+            } else {
+                object1.use(player, action, object2);
+            }
         } else if (action.equals("look")){
             System.out.println(map.map[player.location]);
         } else {
@@ -38,31 +45,13 @@ public class Input
     
    //gets the action to be performed from the string.
     public static String action(String rawIn) {
-        
-        if(checkArr(look, rawIn)) {
-            return "look";
-        } else if(checkArr(eat, rawIn)) {
-            return "eat";
-        } else if(checkArr(open, rawIn)) {
-            return "open";
-        } else if(checkArr(close, rawIn)) {
-            return "close";
-        } else if(checkArr(wear, rawIn)) {
-            return "wear";
-        } else if(checkArr(use, rawIn)) {
-            return "use";
-        } else if(checkArr(place, rawIn)) {
-            return "place";
-        } else if(checkArr(go, rawIn)) {
-            return "go";
-        } else if(checkArr(take, rawIn)) {
-            return "take";
-        } else {
-            return "";
+        for(String[] action: actions) {
+            if(checkArr(action, rawIn)) return action[0];
         }
+        return "";
     }
     
-    //gets the object to perform an action on
+    //gets the object to perform an action with
     public static Item object(String rawIn, Map map, Player player) {
         String objName;
         for(int i = 0; i < map.map[player.location].stuff.size(); i++) {

@@ -7,22 +7,15 @@
  */
 public class Door extends Item {
     //instance variables
-    public boolean isLocked;
-    public int room;
+    public int goToRoom;
     
-    public Door(int room, boolean isLocked, String look, String name) {
-        this.isLocked = isLocked;
-        this.room = room;
-        this.setLook(look);
-        this.setName(name);
+    public Door(int room, String look, String name) {
+        super(look, name);
+        this.goToRoom = room;
     }
     
     public void Go(Player player) {
-            player.location = room;
+            player.location = goToRoom;
             System.out.println("You go through the door");
-    }
-   
-    public String toString() {
-        return getLook();
     }
 }

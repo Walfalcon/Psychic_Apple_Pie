@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=room\ look\ name\ key
+comment0.target=LockedDoor(int,\ java.lang.String,\ java.lang.String,\ Item)
+comment1.params=player\ key
+comment1.target=void\ use(Player,\ Item)
+numComments=2

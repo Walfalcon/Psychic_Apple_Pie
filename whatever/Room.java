@@ -21,6 +21,7 @@ public class Room
     
     //adds an item to the room
     public void addItem(Item newItem) {
+        newItem.setRoom(this);
         stuff.add(newItem);
     }
     

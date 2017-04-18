@@ -1,4 +1,6 @@
 #BlueJ class context
-comment0.params=look\ name
-comment0.target=HealthFood(java.lang.String,\ java.lang.String)
-numComments=1
+comment0.params=look\ name\ heal
+comment0.target=HealthFood(java.lang.String,\ java.lang.String,\ int)
+comment1.params=player
+comment1.target=void\ Eat(Player)
+numComments=2
