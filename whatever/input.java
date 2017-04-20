@@ -21,7 +21,7 @@ public class Input
     
     public static void input(Map map, Player player) {
         System.out.println("\n");
-        String rawIn = key.nextLine();
+        String rawIn = key.nextLine().toLowerCase();
         System.out.print("\n");
         
         String action = action(rawIn);
@@ -55,7 +55,7 @@ public class Input
     public static Item object(String rawIn, Map map, Player player) {
         String objName;
         for(int i = 0; i < map.map[player.location].stuff.size(); i++) {
-            objName = map.map[player.location].getItem(i).getName();
+            objName = map.map[player.location].getItem(i).getName().toLowerCase();
             if(checkStr(objName, rawIn)) {
                 return map.map[player.location].getItem(i);
             }

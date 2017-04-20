@@ -13,10 +13,7 @@ public class MainThing
     public static void main(String[] args) {
         Player player = new Player();
         Map dungeon = new Map();
-        System.out.println(player);
-        System.out.println(dungeon);
-        System.out.println(dungeon.map[0]);
-        System.out.println(dungeon.map[0].stuff.get(0));
+        System.out.println("Welcome to a mystical adventure of magical wonder! Or something. Whatever.");
         while(player.location != 8) {
             Input.input(dungeon, player);
         }

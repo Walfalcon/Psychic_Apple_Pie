@@ -26,8 +26,8 @@ public class Room
     }
     
     //removes an item from the room
-    public boolean takeItem(Item take) {
-        return stuff.remove(take);
+    public void takeItem(Item take) {
+        stuff.remove(take);
     }
     
     //iterates over the items in the room to find a specific one

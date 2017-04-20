@@ -24,4 +24,15 @@ public class Player
     public String toString() {
         return "You are in room " + location + ".\nYou have " + health + " health.";
     }
+    
+    //Tries to add item to inventory, then returns if it succeeded.
+    public boolean addItem(Item newItem) {
+        for(int i = 0; i < inventory.length; i++) {
+            if(inventory[i] == null) {
+                inventory[i] = newItem;
+                return true;
+            }
+        }
+        return false;
+    }
 }
