@@ -7,12 +7,14 @@
  */
 public class HealthFood extends Item{
     int healyPoints;
-    public HealthFood(String look, String name, int heal) {
+    public HealthFood(String look, String name, int heal)
+    {
         super(look, name);
         healyPoints = heal;
     }
     
-    public void Eat(Player player) {
+    public void eat(Player player)
+    {
         System.out.println("You eat the " + getName() + ".");
         
         int startHealth = (int)player.health;
@@ -27,6 +29,14 @@ public class HealthFood extends Item{
         }
         
         System.out.println("You gain " + ((int)player.health - startHealth) + "HP.");
+        getRoom().takeItem(this);
+    }
+    
+    public void take(Player player)
+    {
+        System.out.println("You pick it up for later.");
+        
+        player.inventory.addItem(this);
         getRoom().takeItem(this);
     }
 }

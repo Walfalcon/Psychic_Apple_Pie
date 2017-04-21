@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Input
 {
     static Scanner key = new Scanner(System.in);
+    
+    //These are the different actions the player can perform
     private static String[][] actions = new String[][]{
         {"look", "search", "examine", "check", "observe", "read"},
         {"eat", "consume", "imbibe", "drink", "chug", "gobble", "devour"},
@@ -19,6 +21,7 @@ public class Input
         {"unlock"}
     };
     
+    //The input method that is called every time the player is prompted for an action
     public static void input(Map map, Player player) {
         System.out.println("\n");
         String rawIn = key.nextLine().toLowerCase();
@@ -54,6 +57,14 @@ public class Input
     //gets the object to perform an action with
     public static Item object(String rawIn, Map map, Player player) {
         String objName;
+        
+        for(int i = 0; i < player.inventory.stuff.size(); i++) {
+            objName = player.inventory.stuff.get(i).getName().toLowerCase();
+            if(checkStr(objName, rawIn)) {
+                return player.inventory.stuff.get(i);
+            }
+        }
+        
         for(int i = 0; i < map.map[player.location].stuff.size(); i++) {
             objName = map.map[player.location].getItem(i).getName().toLowerCase();
             if(checkStr(objName, rawIn)) {

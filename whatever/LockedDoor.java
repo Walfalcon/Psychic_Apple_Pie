@@ -1,3 +1,8 @@
+/**
+ * This is the class for locked doors.
+ * Make a key pls
+ * 
+ */
 public class LockedDoor extends Door
 {
     boolean locked;

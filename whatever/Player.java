@@ -9,30 +9,20 @@
 
 public class Player
 {
+    //Player's instance variables.
     public float maxHealth;
     public float health;
-    private Item[] inventory;
+    public Room inventory;
     public int location;
     
     public Player() {
         maxHealth = 25f;
         health = 10f;
-        inventory = new Item[10];
+        inventory = new Room("There's no response, it's just an abstraction");
         location = 0;
     }
     
     public String toString() {
         return "You are in room " + location + ".\nYou have " + health + " health.";
-    }
-    
-    //Tries to add item to inventory, then returns if it succeeded.
-    public boolean addItem(Item newItem) {
-        for(int i = 0; i < inventory.length; i++) {
-            if(inventory[i] == null) {
-                inventory[i] = newItem;
-                return true;
-            }
-        }
-        return false;
     }
 }

@@ -3,6 +3,4 @@ comment0.params=
 comment0.target=Player()
 comment1.params=
 comment1.target=java.lang.String\ toString()
-comment2.params=newItem
-comment2.target=boolean\ addItem(Item)
-numComments=3
+numComments=2
