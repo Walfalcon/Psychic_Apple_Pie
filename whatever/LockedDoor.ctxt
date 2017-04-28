@@ -1,6 +1,17 @@
 #BlueJ class context
 comment0.params=room\ look\ name\ key
 comment0.target=LockedDoor(int,\ java.lang.String,\ java.lang.String,\ Item)
+comment0.text=\r\n\ This\ is\ the\ constructor.\ It\ probably\ doesn't\ need\ another\ constructor.\r\n
 comment1.params=player\ key
 comment1.target=void\ use(Player,\ Item)
-numComments=2
+comment1.text=\r\n\ When\ you\ use\ a\ key\ on\ the\ door,\ it\ unlocks\ the\ door.\ Amazing.\r\n
+comment2.params=player
+comment2.target=void\ go(Player)
+comment2.text=\r\n\ Call\ this\ to\ make\ the\ player\ go\ through\ the\ door.\r\n
+comment3.params=newUnlock
+comment3.target=void\ setUnlock(java.lang.String)
+comment3.text=\r\n\ Call\ this\ to\ change\ what\ it\ says\ when\ you\ unlock\ the\ door.\r\n
+comment4.params=newGoLocked
+comment4.target=void\ setGoLocked(java.lang.String)
+comment4.text=\r\n\ Call\ this\ to\ change\ what\ it\ says\ when\ you\ try\ to\ enter\ the\ locked\ door\r\n
+numComments=5

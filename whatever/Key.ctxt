@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=look\ name
+comment0.target=Key(java.lang.String,\ java.lang.String)
+comment1.params=player\ otherItem
+comment1.target=void\ use(Player,\ Item)
+numComments=2

@@ -16,6 +16,10 @@ public class Door extends Item {
     
     public void Go(Player player) {
             player.location = goToRoom;
-            System.out.println("You go through the door");
+            if(go != null) {
+                System.out.println(go);
+            } else {
+                System.out.println("You go through the door");
+            }
     }
 }

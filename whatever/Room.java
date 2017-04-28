@@ -27,6 +27,9 @@ public class Room
     
     //removes an item from the room
     public void takeItem(Item take) {
+        if(take.getContainer() != null) {
+            take.getContainer().removeItem(take.getName());
+        }
         stuff.remove(take);
     }
     

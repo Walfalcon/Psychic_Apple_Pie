@@ -1,6 +1,8 @@
 
 /**
- * This is where all the things you can interact with will be
+ * This is what all the things you can interact with will be.
+ * mostly just a superclass, but it's not abstract because sometimes you want things like signs where
+ * you don't actually interact with them, but you do want to be able to look at them and stuff.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -10,6 +12,8 @@ public class Item
     protected String look;    //A string that holds a description of the object.
     protected String name;    //The name of the object.
     protected Room room;
+    protected String eat, open, close, wear, use, place, go, take;
+    private Container container;
     
     /**
      * If for some reason you want to make a object with no name or description.
@@ -21,7 +25,7 @@ public class Item
     }
     
     /**
-     * This is the normal constructor. Why would you use the other one.
+     * This is the normal constructor. Why would you use the empty one.
      */
     public Item(String look, String name)
     {
@@ -44,7 +48,18 @@ public class Item
         return room;
     }
     
-    public void use(Player player, String action)
+    //set what the container of this item is. Like, if it's in a box, or whatever.
+    public void setContainer(Container container)
+    {
+        this.container = container;
+    }
+    
+    public Container getContainer()
+    {
+        return container;
+    }
+    
+    public void doAction(Player player, String action)
     {
         switch (action) {
             case "look": this.look(player);
@@ -70,7 +85,7 @@ public class Item
         }
     }
     
-    public void use(Player player, String action, Item otherItem)
+    public void doAction(Player player, String action, Item otherItem)
     {   
         switch (action) {
             case "use": this.use(player, otherItem);
@@ -80,6 +95,49 @@ public class Item
             default:
                 System.out.println("It doesn't work.");
         }
+    }
+    
+    /**
+     * Some methods for setting eat, open, wear, etc.
+     */
+    public void setEat(String eat)
+    {
+        this.eat = eat;
+    }
+    
+    public void setOpen(String open)
+    {
+        this.open = open;
+    }
+    
+    public void setClose(String close)
+    {
+        this.close = close;
+    }
+    
+    public void setWear(String wear)
+    {
+        this.wear = wear;
+    }
+    
+    public void setUse(String use)
+    {
+        this.use = use;
+    }
+    
+    public void setPlace(String place)
+    {
+        this.place = place;
+    }
+    
+    public void setGo(String go)
+    {
+        this.go = go;
+    }
+    
+    public void setTake(String take)
+    {
+        this.take = take;
     }
     
     /**
@@ -94,7 +152,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (eat != null) {
+            System.out.println(eat);
+        } else if (rand < 25) {
             System.out.println("You shouldn't eat that!");
         } else if (rand < 50) {
             System.out.println("You'll spoil your dinner!");
@@ -113,7 +173,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (open != null) {
+            System.out.println(open);
+        } if (rand < 25) {
             System.out.println("That's either not something you can open, or I screwed up my code.");
         } else if (rand < 50) {
             System.out.println("You open the " + name + ". There's nothing. Happy? You ruined a perfectly good " + name + ", just because you THOUGHT there MIGHT be something in it.\n" +
@@ -130,7 +192,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (close != null) {
+            System.out.println(close);
+        } else if (rand < 25) {
             System.out.println("You try to close it, but you can't. Because that's stupid. You're stupid.\nOr maybe I'm stupid and you should be able to close this.\n Whatever.");
         } else if (rand < 50) {
             System.out.println("You can't close it because it doesn't close. Or open. Why would you even want to close a " + name + "?");
@@ -145,7 +209,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (wear != null) {
+            System.out.println(wear);
+        } else if (rand < 25) {
             System.out.println("You can't find the holes, so you give up.\nWait frig that sounds wrong.");
         } else if (rand < 50) {
             System.out.println("You would, but it clashes with your purse.");
@@ -160,7 +226,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (use != null) {
+            System.out.println(use);
+        } else if (rand < 25) {
             System.out.println("use is too vague for this item. Try eating or wearing it.");
         } else if (rand < 50) {
             System.out.println("Are you just going to use it and throw it away like you used me?");
@@ -181,7 +249,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (place != null) {
+            System.out.println(place);
+        } else if (rand < 25) {
             System.out.println("You can't remove quest items from your inventory.\nEspecially if they're not in your inventory.");
         } else if (rand < 50) {
             System.out.println("Why are you trying to put it down? What did it do to you? It's okay, " + name + ", I think you're special.");
@@ -197,7 +267,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (place != null) {
+            System.out.println(go);
+        } else if (rand < 25) {
             System.out.println("You enter the " + name + ". To your surprise, you are now in a forest! Following a path takes you to a castle, where you embark on a magnificent journey\n" +
                                "throughout the kingdom, exterminating dragons, defeating evil sorcerers, and rescuing fair damsels. While the odds are against you, you conquer each challenge\n" +
                                "in your path with the help of your sacred sword and shield. Eventually, you retire, using the fortunes aquired over your adventures to build a small cabin by a\n" +
@@ -215,7 +287,9 @@ public class Item
     {
         int rand = MainThing.RandomNum(0, 100);
         
-        if (rand < 25) {
+        if (take != null) {
+            System.out.println(take);
+        } else if (rand < 25) {
             System.out.println("You throw your back out trying to pick up the " + name + ".");
         } else if (rand < 50) {
             System.out.println("You can't fit it in your infinitely large pockets.");
@@ -235,13 +309,13 @@ public class Item
         int rand = MainThing.RandomNum(0, 100);
         
         if (rand < 25) {
-            System.out.println("Smashing rocks together won't help. It probably will, actually. It'll just take a while");
+            System.out.println("Smashing rocks together randomly won't help. Actually it probably will, it'll just take a while and won't be very fun.");
         } else if (rand < 50) {
             System.out.println("You can't. Don't ask me to explain, you just can't.");
         } else if (rand < 75) {
             System.out.println("I would say something clever about what you get when you combine a " + name + " and a " + otherItem.getName() + ", but like, that's hard, and I don' wanna.");
         } else {
-            System.out.println("Using a " + name + " with " + otherItem + " might make a vegetarian angry.");
+            System.out.println("Using a " + name + " with a " + otherItem + " might upset a vegan.");
         }
     }
     

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=look\ name\ stuff
+comment0.target=Container(java.lang.String,\ java.lang.String,\ Item[])
+comment1.params=name\ description
+comment1.target=void\ addDescription(java.lang.String,\ java.lang.String)
+comment2.params=name
+comment2.target=void\ removeItem(java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=boolean\ isEmpty()
+numComments=5

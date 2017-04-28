@@ -34,9 +34,9 @@ public class Input
             rawIn.replaceFirst(rawIn, object1.getName());
             Item object2 = object(rawIn, map, player);
             if(object2 == null) {
-                object1.use(player, action);
+                object1.doAction(player, action);
             } else {
-                object1.use(player, action, object2);
+                object1.doAction(player, action, object2);
             }
         } else if (action.equals("look")){
             System.out.println(map.map[player.location]);
