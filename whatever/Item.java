@@ -13,7 +13,7 @@ public class Item
     protected String name;    //The name of the object.
     protected Room room;
     protected String eat, open, close, wear, use, place, go, take;
-    private Container container;
+    private Container container = null;
     
     /**
      * If for some reason you want to make a object with no name or description.

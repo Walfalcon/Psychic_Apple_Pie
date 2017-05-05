@@ -25,6 +25,7 @@ public class Input
     public static void input(Map map, Player player) {
         System.out.println("\n");
         String rawIn = key.nextLine().toLowerCase();
+        if(rawIn.equals("exit")) System.exit(0);
         System.out.print("\n");
         
         String action = action(rawIn);

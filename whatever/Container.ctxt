@@ -1,12 +1,12 @@
 #BlueJ class context
-comment0.params=look\ name\ stuff
-comment0.target=Container(java.lang.String,\ java.lang.String,\ Item[])
-comment1.params=name\ description
-comment1.target=void\ addDescription(java.lang.String,\ java.lang.String)
-comment2.params=name
-comment2.target=void\ removeItem(java.lang.String)
+comment0.params=look\ name\ intro\ stuff\ descriptions
+comment0.target=Container(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String[],\ java.lang.String[])
+comment1.params=name
+comment1.target=void\ removeItem(java.lang.String)
+comment1.text=\r\n\ remove\ an\ item\ from\ the\ container.\r\n\ called\ when\ the\ item\ is\ taken\ from\ the\ room.\r\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
 comment3.params=
-comment3.target=java.lang.String\ toString()
-comment4.params=
-comment4.target=boolean\ isEmpty()
-numComments=5
+comment3.target=int\ numThings()
+comment3.text=\r\n\ counts\ how\ many\ things\ are\ in\ the\ container\r\n
+numComments=4

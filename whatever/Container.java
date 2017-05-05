@@ -5,31 +5,28 @@
 public class Container extends Item
 {
     //contents is an array of the items in the container
-    private Item[] contents;
+    private String[] contents;
     //descriptions is an array of the descriptions of the items in the container.
     private String[] descriptions;
+    //What to say to start describing the contents
+    private String contentIntro;
     
-    public Container(String look, String name, Item[] stuff)
+    public Container(String look, String name, String intro, String[] stuff, String[] descriptions)
     {
         super(look, name);
         contents = stuff;
-        descriptions = new String[contents.length];
+        this.descriptions = descriptions;
+        contentIntro = intro;
     }
     
-    public void addDescription(String name, String description)
-    {
-        for(int i = 0; i < contents.length; i++) {
-            if(contents[i].getName().equals(name)) {
-                descriptions[i] = description;
-                break;
-            }
-        }
-    }
-    
+    /**
+     * remove an item from the container.
+     * called when the item is taken from the room.
+     */
     public void removeItem(String name)
     {
         for(int i = 0; i < contents.length; i++) {
-            if(contents[i].getName().equals(name)) {
+            if(contents[i].equals(name)) {
                 descriptions[i] = null;
                 contents[i] = null;
                 break;
@@ -40,20 +37,31 @@ public class Container extends Item
     public String toString()
     {
         String out = super.toString();
-        if(!isEmpty()) {
-            
+        if(numThings() != 0) {
+            System.out.print("\n" + contentIntro + " ");
+            System.out.print(descriptions[0]);
+            if(numThings() > 1)  {
+                for(int i = 1; i < contents.length - 1; i++) {
+                    System.out.print(", " + descriptions[i]);
+                }
+                System.out.print(" and " + descriptions[contents.length - 1] + ".");
+            }
         }
         
         return out;
     }
     
-    public boolean isEmpty()
+    /**
+     * counts how many things are in the container
+     */
+    public int numThings()
     {
-        for(Item thing: contents) {
+        int count = 0;
+        for(String thing: contents) {
             if(thing != null) {
-                return false;
+                count++;
             }
         }
-        return true;
+        return count;
     }
 }

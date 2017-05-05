@@ -54,7 +54,8 @@ public class Room
     public String toString() {
         extraDescription = "";
         for(Item item: stuff) {
-            extraDescription += "There's a " + item.getName() + ".\n";
+            if(item.getContainer() != null)
+                extraDescription += "\nThere's a " + item.getContainer() + ".";
         }
         
         return description + extraDescription;
