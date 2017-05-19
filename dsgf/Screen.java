@@ -56,7 +56,8 @@ public class Screen {
             
             while(!hit) {
                 if (sideDistX < sideDistY) {
-                    sideDistX +=
+                    sideDistX += deltaDistX;
+                    mapX
                 }
         }
     }
