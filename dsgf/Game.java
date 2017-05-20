@@ -15,6 +15,8 @@ public class Game extends JFrame implements Runnable{
 	private BufferedImage image;
 	public int[] pixels;
 	public Camera camera;
+	public Screen screen;
+	public ArrayList<Texture> textures;
 	public static int[][] map = 
 		{
 			{1,1,1,1,1,1,1,1,2,2,2,2,2,2,2},
@@ -47,6 +49,12 @@ public Game() {
 		setVisible(true);
 		camera = new Camera(4.5, 4.5, 1, 0, 0, -.66);
 		addKeyListener(camera);
+		textures = new ArrayList<Texture>();
+		textures.add(Texture.wood);
+		textures.add(Texture.brick);
+		textures.add(Texture.bluestone);
+		textures.add(Texture.stone);
+		screen = new Screen(map, textures, 640, 480);
 		start();
 	}
 
@@ -87,6 +95,7 @@ public void run() {
 		{
 			//handles all of the logic restricted time
 			camera.update(map);
+			screen.update(camera, pixels);
 			delta--;
 		}
 		render();//displays to the screen unrestricted time
