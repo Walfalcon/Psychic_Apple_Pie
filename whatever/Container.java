@@ -19,7 +19,11 @@ public class Container extends Item
         contentIntro = intro;
         
         for(String thing: contents) {
-            this.getRoom().getItem(thing).setContainer(this);
+            System.out.println(thing);
+            Room room = this.getRoom();
+            System.out.println(room);
+            Item item = room.getItem(thing);
+            item.setContainer(this);
         }
     }
     
