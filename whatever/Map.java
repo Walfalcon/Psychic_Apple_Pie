@@ -23,5 +23,6 @@ public class Map
                                      "The only drawer on the desk with anything in it besides dust has", new String[]{"glue", "drumstick"}, new String[]{"some Super Duper Super Glue", "a fried drumstick. Why though"}));
         map[0].addItem(new Door(1, "It's a pretty normal wooden door, kinda boring.", "left door"));
         map[0].addItem(new Door(2, "It's a boring wooden door. It looks pretty much exactly the same as the other two doors.", "right door"));
+        map[0].addItem(new Item("It's a cow", "cow"));
     }
 }

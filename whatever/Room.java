@@ -21,8 +21,8 @@ public class Room
     
     //adds an item to the room
     public void addItem(Item newItem) {
-        newItem.setRoom(this);
         stuff.add(newItem);
+        newItem.setRoom(this);
     }
     
     //removes an item from the room
@@ -54,7 +54,7 @@ public class Room
     public String toString() {
         extraDescription = "";
         for(Item item: stuff) {
-            if(item.getContainer() != null)
+            if(item.getContainer() == null)
                 extraDescription += "\nThere's a " + item.getContainer() + ".";
         }
         

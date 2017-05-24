@@ -17,6 +17,10 @@ public class Container extends Item
         contents = stuff;
         this.descriptions = descriptions;
         contentIntro = intro;
+        
+        for(String thing: contents) {
+            this.getRoom().getItem(thing).setContainer(this);
+        }
     }
     
     /**
