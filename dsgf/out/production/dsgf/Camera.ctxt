@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=x\ y\ xd\ yd\ xp\ yp
+comment0.target=Camera(double,\ double,\ double,\ double,\ double,\ double)
+comment1.params=key
+comment1.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment2.params=key
+comment2.target=void\ keyPressed(java.awt.event.KeyEvent)
+comment3.params=key
+comment3.target=void\ keyReleased(java.awt.event.KeyEvent)
+comment4.params=map
+comment4.target=void\ update(int[][])
+numComments=5

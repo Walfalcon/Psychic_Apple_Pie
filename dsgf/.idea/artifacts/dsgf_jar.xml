@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="dsgf:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/dsgf_jar</output-path>
+    <root id="archive" name="dsgf.jar">
+      <element id="module-output" name="dsgf" />
+    </root>
+  </artifact>
+</component>
