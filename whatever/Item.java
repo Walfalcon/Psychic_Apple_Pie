@@ -354,4 +354,12 @@ public class Item
     {
         return name;
     }
+    
+    /**
+     * Called when the item is added to a room.
+     */
+    public void woke(Room room)
+    {
+        setRoom(room);
+    }
 }

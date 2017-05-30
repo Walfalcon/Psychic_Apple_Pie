@@ -22,7 +22,7 @@ public class Room
     //adds an item to the room
     public void addItem(Item newItem) {
         stuff.add(newItem);
-        newItem.setRoom(this);
+        newItem.woke(this);
     }
     
     //removes an item from the room
