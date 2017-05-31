@@ -17,14 +17,6 @@ public class Container extends Item
         contents = stuff;
         this.descriptions = descriptions;
         contentIntro = intro;
-        
-        for(String thing: contents) {
-            System.out.println(thing);
-            Room room = this.getRoom();
-            System.out.println(room);
-            Item item = room.getItem(thing);
-            item.setContainer(this);
-        }
     }
     
     /**
@@ -71,5 +63,16 @@ public class Container extends Item
             }
         }
         return count;
+    }
+    
+    public void woke(Room room)
+    {
+        setRoom(room);
+        
+        Item item;
+        for(String thing: contents) {
+            item = room.getItem(thing);
+            item.setContainer(this);
+        }
     }
 }

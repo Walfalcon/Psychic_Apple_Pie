@@ -9,4 +9,6 @@ comment2.target=java.lang.String\ toString()
 comment3.params=
 comment3.target=int\ numThings()
 comment3.text=\r\n\ counts\ how\ many\ things\ are\ in\ the\ container\r\n
-numComments=4
+comment4.params=room
+comment4.target=void\ woke(Room)
+numComments=5
