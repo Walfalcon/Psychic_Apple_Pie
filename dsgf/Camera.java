@@ -5,7 +5,7 @@ public class Camera implements KeyListener {
     public double xPos, yPos, xDir, yDir, xPlane, yPlane;
     public boolean tLeft, tRight, forward, back, sLeft, sRight;
     public final double MOVE_SPEED = .05;   //speed of a moving player
-    public final double ROTATION_SPEED = .045;  //speed of a turning player
+    public final double ROTATION_SPEED = .03;  //speed of a turning player
     public final double WALL_DISTANCE = 0.05;  //minimum distance between player and wall
     
     public Camera(double x, double y, double xd, double yd, double xp, double yp)
@@ -61,15 +61,15 @@ public class Camera implements KeyListener {
                 xPos -= yDir*MOVE_SPEED;
             }
             if((int)(yPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir))) > 0 && map[(int)xPos][(int)(yPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir)))] == 0) {
-                yPos += yDir * MOVE_SPEED;
+                yPos += xDir*MOVE_SPEED;
             }
         }
         if(sRight) {
-            if((int)(xPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir))) > 0 && map[(int)(xPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir)))][(int)yPos] == 0) {
-                xPos -= xDir*MOVE_SPEED;
+            if((int)(xPos + yDir * MOVE_SPEED + WALL_DISTANCE * (yDir / Math.abs(xDir))) > 0 && map[(int)(xPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir)))][(int)yPos] == 0) {
+                xPos += yDir*MOVE_SPEED;
             }
             if((int)(yPos - yDir * MOVE_SPEED - WALL_DISTANCE * (yDir / Math.abs(yDir))) > 0 && map[(int)xPos][(int)(yPos - yDir * MOVE_SPEED - WALL_DISTANCE * (yDir / Math.abs(yDir)))] == 0) {
-                yPos -= yDir * MOVE_SPEED;
+                yPos -= xDir * MOVE_SPEED;
             }
         }
         
