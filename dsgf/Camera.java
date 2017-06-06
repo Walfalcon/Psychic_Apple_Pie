@@ -21,21 +21,21 @@ public class Camera implements KeyListener {
     public void keyTyped(KeyEvent key){}
     
     public void keyPressed(KeyEvent key) {
-        if(key.getKeyCode() == KeyEvent.VK_LEFT || key.getKeyCode() == KeyEvent.VK_4) tLeft = true;
-        if(key.getKeyCode() == KeyEvent.VK_RIGHT || key.getKeyCode() == KeyEvent.VK_6) tRight = true;
-        if(key.getKeyCode() == KeyEvent.VK_UP || key.getKeyCode() == KeyEvent.VK_8) forward = true;
-        if(key.getKeyCode() == KeyEvent.VK_DOWN || key.getKeyCode() == KeyEvent.VK_2) back = true;
-        if(key.getKeyCode() == KeyEvent.VK_7) sLeft = true;
-        if(key.getKeyCode() == KeyEvent.VK_9) sRight = true;
+        if(key.getKeyCode() == KeyEvent.VK_LEFT || key.getKeyCode() == KeyEvent.VK_NUMPAD4) tLeft = true;
+        if(key.getKeyCode() == KeyEvent.VK_RIGHT || key.getKeyCode() == KeyEvent.VK_NUMPAD6) tRight = true;
+        if(key.getKeyCode() == KeyEvent.VK_UP || key.getKeyCode() == KeyEvent.VK_NUMPAD8) forward = true;
+        if(key.getKeyCode() == KeyEvent.VK_DOWN || key.getKeyCode() == KeyEvent.VK_NUMPAD2) back = true;
+        if(key.getKeyCode() == KeyEvent.VK_NUMPAD7) sLeft = true;
+        if(key.getKeyCode() == KeyEvent.VK_NUMPAD9) sRight = true;
     }
     
     public void keyReleased(KeyEvent key) {
-        if(key.getKeyCode() == KeyEvent.VK_LEFT || key.getKeyCode() == KeyEvent.VK_4) tLeft = false;
-        if(key.getKeyCode() == KeyEvent.VK_RIGHT || key.getKeyCode() == KeyEvent.VK_6) tRight = false;
-        if(key.getKeyCode() == KeyEvent.VK_UP || key.getKeyCode() == KeyEvent.VK_8) forward = false;
-        if(key.getKeyCode() == KeyEvent.VK_DOWN || key.getKeyCode() == KeyEvent.VK_2) back = false;
-        if(key.getKeyCode() == KeyEvent.VK_7) sLeft = false;
-        if(key.getKeyCode() == KeyEvent.VK_9) sRight = false;
+        if(key.getKeyCode() == KeyEvent.VK_LEFT || key.getKeyCode() == KeyEvent.VK_NUMPAD4) tLeft = false;
+        if(key.getKeyCode() == KeyEvent.VK_RIGHT || key.getKeyCode() == KeyEvent.VK_NUMPAD6) tRight = false;
+        if(key.getKeyCode() == KeyEvent.VK_UP || key.getKeyCode() == KeyEvent.VK_NUMPAD8) forward = false;
+        if(key.getKeyCode() == KeyEvent.VK_DOWN || key.getKeyCode() == KeyEvent.VK_NUMPAD2) back = false;
+        if(key.getKeyCode() == KeyEvent.VK_NUMPAD7) sLeft = false;
+        if(key.getKeyCode() == KeyEvent.VK_NUMPAD9) sRight = false;
     }
     
     public void update(int[][] map) {
@@ -60,15 +60,15 @@ public class Camera implements KeyListener {
             if((int)(xPos - yDir * MOVE_SPEED - WALL_DISTANCE * (yDir / Math.abs(yDir))) > 0 && map[(int)(xPos - yDir * MOVE_SPEED - WALL_DISTANCE * (yDir / Math.abs(yDir)))][(int)yPos] == 0) {
                 xPos -= yDir*MOVE_SPEED;
             }
-            if((int)(yPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir))) > 0 && map[(int)xPos][(int)(yPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir)))] == 0) {
+            if((int)(yPos + xDir * MOVE_SPEED + WALL_DISTANCE * (xDir / Math.abs(xDir))) > 0 && map[(int)xPos][(int)(yPos + xDir * MOVE_SPEED + WALL_DISTANCE * (xDir / Math.abs(xDir)))] == 0) {
                 yPos += xDir*MOVE_SPEED;
             }
         }
         if(sRight) {
-            if((int)(xPos + yDir * MOVE_SPEED + WALL_DISTANCE * (yDir / Math.abs(xDir))) > 0 && map[(int)(xPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir)))][(int)yPos] == 0) {
+            if((int)(xPos + yDir * MOVE_SPEED + WALL_DISTANCE * (yDir / Math.abs(xDir))) > 0 && map[(int)(xPos + yDir * MOVE_SPEED + WALL_DISTANCE * (yDir / Math.abs(yDir)))][(int)yPos] == 0) {
                 xPos += yDir*MOVE_SPEED;
             }
-            if((int)(yPos - yDir * MOVE_SPEED - WALL_DISTANCE * (yDir / Math.abs(yDir))) > 0 && map[(int)xPos][(int)(yPos - yDir * MOVE_SPEED - WALL_DISTANCE * (yDir / Math.abs(yDir)))] == 0) {
+            if((int)(yPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir))) > 0 && map[(int)xPos][(int)(yPos - xDir * MOVE_SPEED - WALL_DISTANCE * (xDir / Math.abs(xDir)))] == 0) {
                 yPos -= xDir * MOVE_SPEED;
             }
         }

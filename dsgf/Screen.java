@@ -6,7 +6,7 @@ public class Screen {
     public int mapWidth, mapHeight, width, height;
     public ArrayList<Texture> textures;
     
-    public Screen(int[][] m, ArrayList tex, int w, int h) {
+    public Screen(int[][] m, ArrayList<Texture> tex, int w, int h) {
         map = m;
         textures = tex;
         width = w;

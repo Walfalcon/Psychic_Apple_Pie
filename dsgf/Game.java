@@ -10,6 +10,8 @@ public class Game extends JFrame implements Runnable{
 	private static final long serialVersionUID = 1L;
 	public int mapWidth = 15;
 	public int mapHeight = 15;
+	public static int screenWidth = 640;
+	public static int screenHeight = 480;
 	private Thread thread;
 	private boolean running;
 	private BufferedImage image;
@@ -40,7 +42,7 @@ public class Game extends JFrame implements Runnable{
 public Game() {
 		thread = new Thread(this);
 		rawr = new GameObject(5.5, 5.5, "res/rawr.png");
-		image = new BufferedImage(640, 480, BufferedImage.TYPE_INT_RGB);
+		image = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 		setSize(640, 480);
 		setResizable(false);
