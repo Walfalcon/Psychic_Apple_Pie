@@ -21,11 +21,19 @@ public class GameObject
     
     public void render(Graphics g, Camera c) {
         double dist = Math.sqrt((c.xPos - xPos)*(c.xPos - xPos) + (c.yPos - yPos)*(c.yPos - yPos));
-        double scale = Math.sqrt(dist);
-        int drawHeight = (int)(sprite.getHeight()/scale);
-        int drawWidth = (int)(sprite.getWidth()/scale);
-        
-        
-        if(scale != 0 && 0 <= Math.abs((drawWidth + Game.screenWidth)/2)) g.drawImage(sprite, 50, Game.screenHeight/2 - drawHeight/2, drawWidth, drawHeight, null);
+        if(dist != 0) {
+            double scale = Math.sqrt(dist);
+            int drawHeight = (int)(sprite.getHeight()/scale);
+            int drawWidth = (int)(sprite.getWidth()/scale);
+            
+            double relCameraAngleY = ((xPos - c.xPos)*c.xDir + (yPos - c.yPos)*c.yDir) / dist;
+            if(relCameraAngleY <= 0) return;
+            
+            double relCameraAngleX = Math.sqrt(dist * dist - relCameraAngleY * relCameraAngleY);
+            int screenPosX;
+            
+            int screenX = (int)
+            if(0 <= Math.abs((drawWidth + Game.screenWidth)/2)) g.drawImage(sprite, 50, Game.screenHeight/2 - drawHeight/2, drawWidth, drawHeight, null);
+        }
     }
 }
