@@ -25,7 +25,7 @@ public class Game extends JFrame implements Runnable{
     public Camera camera;
     public Screen screen;
     public ArrayList<Texture> textures;
-    public GameObject rawr;
+    public GameObject[] rawr;
     public static int[][] map = 
         {
             {1,1,1,1,1,1,1,1,2,2,2,2,2,2,2},
@@ -47,7 +47,7 @@ public class Game extends JFrame implements Runnable{
 
 public Game() {
         thread = new Thread(this);
-        rawr = new GameObject(5, 6.01, "res/rawr.png");
+        rawr = new GameObject[]{new GameObject(5, 6.01, "res/rawr.png")};
         image = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
         setSize(screenWidth, screenHeight);
@@ -98,7 +98,6 @@ public void render() {
     }
     Graphics g = bs.getDrawGraphics();
     g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
-    rawr.render(g, camera);
     bs.show();
 }
 
@@ -115,7 +114,7 @@ public void run() {
         {
             //handles all of the logic restricted time
             camera.update(map);
-            screen.update(camera, pixels);
+            screen.update(camera, pixels, rawr, this);
             delta--;
         }
         render();//displays to the screen unrestricted time

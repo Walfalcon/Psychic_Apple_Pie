@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=m\ tex\ w\ h
 comment0.target=Screen(int[][],\ java.util.ArrayList,\ int,\ int)
-comment1.params=camera\ pixels
-comment1.target=int[]\ update(Camera,\ int[])
+comment1.params=camera\ pixels\ objects\ game
+comment1.target=int[]\ update(Camera,\ int[],\ GameObject[],\ Game)
 numComments=2

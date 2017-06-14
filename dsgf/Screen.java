@@ -13,7 +13,7 @@ public class Screen {
         height = h;
     }
     
-    public int[] update(Camera camera, int[] pixels) {
+    public int[] update(Camera camera, int[] pixels, GameObject[] objects) {
         for(int n = 0; n < pixels.length/2; n++) {
             if(pixels[n] != Color.DARK_GRAY.getRGB()) pixels[n] = Color.DARK_GRAY.getRGB();
         }
@@ -66,6 +66,9 @@ public class Screen {
                 }
 
                 if(map[mapX][mapY] > 0) hit = true;
+                for(GameObject object: objects) {
+                    if((int)object.xPos == mapX && (int)object.yPos == mapY)System.out.println("boop");
+                }
             }
 
             if(side == 0) perpWallDist = Math.abs((mapX - camera.xPos + (1 - stepX) / 2) / rayDirX);
